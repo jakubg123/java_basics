@@ -1,5 +1,7 @@
 package StudentIndex;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class StudentIndex {
@@ -19,7 +21,14 @@ public class StudentIndex {
        for(int i =0; i < numOfMarks;i++){
            marks[i] = scanner.nextInt();
        }
+       scanner.close();
        return marks;
+    }
+
+    public void printMarks(){
+        for(int data : marks){
+            System.out.println(data);
+        }
     }
 
     public void describe(){
@@ -45,4 +54,33 @@ public class StudentIndex {
             }
         }
     }
+    public int maxMark(){
+        int last = marks.length - 1;
+        Arrays.sort(marks);
+        return marks[last];
+    }
+
+
+    public void notAcquired(){
+        HashSet<Integer> foundMarks = new HashSet<>();
+        for (int i = 0; i < marks.length; i++) {
+            int grade = marks[i];
+            if (grade >= 2 && grade <= 5) {
+                foundMarks.add(grade);
+            }
+        }
+        for (int mark = 2; mark <= 5; mark++) {
+            if (!foundMarks.contains(mark)) {
+                System.out.println("Missing grade: " + mark);
+            }
+        }
+    }
 }
+
+
+
+
+
+
+
+
