@@ -99,13 +99,44 @@ class Doctor extends MedicalStaff{
 class Patient extends Person implements Consultable{
 
     private final String patientId;
+    private Illness illness;
+
     public void print(){
-        System.out.println(getName() + " " + getPesel() + " " + patientId);
+        System.out.println(getName() + " " + getPesel() + " " + patientId + " came with" + illness.getIllness());
     }
     public Patient(String name, String pesel, String id){
         super(name, pesel);
         patientId = id;
     }
+
+    public boolean hasIllness(){
+        if(illness != null){
+            return true;
+        }
+        return false;
+    }
+
+    public void cureIllness(){
+        illness = null;
+    }
+
+
+
+    private class Illness{
+        private String illness;
+        public Illness(String illness){
+            this.illness = illness;
+        }
+        public String getIllness()
+        {
+            if(illness!= null)
+                return illness;
+            else
+                return "brak choroby";
+        }
+
+    }
+
 
     @Override
     public void consult(Staff s) {
