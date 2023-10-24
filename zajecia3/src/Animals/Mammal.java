@@ -1,2 +1,2 @@
-package Animals;
-
+package Animals;public class Mammal {
+}
