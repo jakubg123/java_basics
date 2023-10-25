@@ -5,38 +5,37 @@ public class AnimalsMain {
     public static void main(String [] args){
 
         Mammal elephant = new Elephant(500, 10, "test");
-        Animal tiger = new Tiger(200, 5, "test2");
-        Animal sparrow = new Sparrow(300, 2, "test3");
-        Animal shark = new Shark(400, 8, "test5");
+        Mammal tiger = new Tiger(200, 5, "test2");
+        Bird sparrow = new Sparrow(300, 2, "test3");
+        Fish shark = new Shark(400, 8, "test5");
 
         elephant.whoAmI();
         elephant.eat();
         elephant.sleep();
-        System.out.println(elephant.getSpecies());
+        elephant.speciesInfo();
         elephant.walk();
 
         tiger.whoAmI();
         tiger.eat();
         tiger.sleep();
-        elephant.getSpecies();
+        tiger.speciesInfo();
+        tiger.walk();
 
         sparrow.whoAmI();
         sparrow.eat();
         sparrow.sleep();
-        elephant.getSpecies();
+        sparrow.speciesInfo();
+        sparrow.fly();
 
         shark.whoAmI();
         shark.eat();
         shark.sleep();
-        elephant.getSpecies();
+        shark.speciesInfo();
+        shark.swim();
 
-        if (tiger instanceof Carnivorous) {
-            ((Carnivorous) tiger).hunt();
-        }
+        ((Carnivorous) tiger).hunt();
 
-        if (shark instanceof Carnivorous) {
-            ((Carnivorous) shark).hunt();
-        }
+        ((Carnivorous) shark).hunt();
     }
 
 }

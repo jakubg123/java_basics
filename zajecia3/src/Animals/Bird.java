@@ -1,15 +1,15 @@
 package Animals;
 
-class Bird extends Animal{
-    public Bird(double weight, int age, String name){
+class Bird extends Animal {
+    public Bird(double weight, int age, String name) {
         super(weight, age, name);
     }
 
-    public void fly(){
+    public void fly() {
         System.out.println("fly");
     }
 
-    public String getSpecies(){
-        return "Bird";
+    public void speciesInfo() {
+        System.out.println("Bird");
     }
 }

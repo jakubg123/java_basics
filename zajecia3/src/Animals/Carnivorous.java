@@ -1,5 +1,5 @@
 package Animals;
 
-interface Carnivorous{
+interface Carnivorous {
     void hunt();
 }
