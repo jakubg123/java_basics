@@ -1,14 +1,14 @@
+package travel_agency;
+
 import java.time.LocalDate;
 
 public class Insurance {
     private int insuranceNumber;
-    private Customer insuranceCustomer;
     private LocalDate startDate;
     private LocalDate endDate;
 
-    public Insurance(int insuranceNumber, Customer insuranceCustomer, LocalDate startDate, LocalDate endDate){
+    public Insurance(int insuranceNumber, LocalDate startDate, LocalDate endDate){
         this.insuranceNumber = insuranceNumber;
-        this.insuranceCustomer = insuranceCustomer;
         this.startDate = startDate;
         this.endDate = endDate;
     }
@@ -17,9 +17,6 @@ public class Insurance {
         return insuranceNumber;
     }
 
-    public Customer getInsuranceCustomer() {
-        return insuranceCustomer;
-    }
 
     public LocalDate getStartDate() {
         return startDate;
@@ -31,10 +28,6 @@ public class Insurance {
 
     public void setInsuranceNumber(int insuranceNumber) {
         this.insuranceNumber = insuranceNumber;
-    }
-
-    public void setInsuranceCustomer(Customer insuranceCustomer) {
-        this.insuranceCustomer = insuranceCustomer;
     }
 
     public void setStartDate(LocalDate startDate) {

@@ -1,3 +1,5 @@
+package travel_agency;
+
 public class Customer {
 
     private final int id;

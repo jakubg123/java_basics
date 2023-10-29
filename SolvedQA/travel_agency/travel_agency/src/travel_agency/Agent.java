@@ -1,3 +1,5 @@
+package travel_agency;
+
 public class Agent {
     private int id;
     private String name;

@@ -1,3 +1,5 @@
+package travel_agency;
+
 import java.time.LocalDate;
 
 public class Travel {

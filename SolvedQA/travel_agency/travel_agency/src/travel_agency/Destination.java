@@ -1,14 +1,15 @@
-import java.util.Arrays;
+package travel_agency;
 
 public class Destination {
     private int id;
-    private String name;
+
+    private Location location;
     private MeanOfTransport transport;
 
-    public Destination(int id, String name, MeanOfTransport transport)
+    public Destination(int id, Location location, MeanOfTransport transport)
     {
         this.id = id;
-        this.name = name;
+        this.location = location;
         this.transport = transport;
     }
 
@@ -16,9 +17,6 @@ public class Destination {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
 
     public MeanOfTransport getTransport() {
         return transport;
@@ -28,9 +26,6 @@ public class Destination {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public void setTransport(MeanOfTransport transport) {
         this.transport = transport;
@@ -38,10 +33,7 @@ public class Destination {
 
     @Override
     public String toString() {
-
-
-        return id + " " + name + " " + transport.getName();
-
+        return id + " " + location.toString() + " " + transport.getName();
     }
 
 
