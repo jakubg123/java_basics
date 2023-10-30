@@ -1,10 +1,16 @@
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
-        if(args.length > 0){
-            System.out.println(args[0]);
+        if(args.length == 0){
+            throw new Exception("No parameters included!");
         }
-        int [] array = {1,2,3,9,8,7,5,2};
+
+        int[] array = new int[args.length];
+
+        for(int i=0; i < array.length;i++){
+            array[i] = Integer.parseInt(args[i]);
+        }
+
 
         quickSort(array, 0 , array.length - 1);
         printArray(array);
@@ -12,7 +18,6 @@ public class Main {
 
 
     }
-
     public static void quickSort(int[] arr, int low, int high) {
         if (low < high) {
             int pivot = partition(arr, low, high);
@@ -20,7 +25,6 @@ public class Main {
             quickSort(arr, pivot+1, high);
         }
     }
-
     public static int partition(int[] arr, int low, int high) {
         int pivot = arr[high];
         int i = (low-1);
