@@ -11,10 +11,10 @@ import java.time.ZoneId;
 
 import static org.junit.Assert.*;
 
-class TravelTest {
+public class TravelTest {
 
     @Test
-    public void reserveWithEnoughSeats() throws NoFreeSeatsException {
+    public void reserveWithEnoughSeatsTest() throws NoFreeSeatsException {
         // Arrange
         City startCity = new City("Warsaw", "Poland", ZoneId.of("Europe/Warsaw"));
         City endCity = new City("Berlin", "Germany", ZoneId.of("Europe/Berlin"));
@@ -28,44 +28,65 @@ class TravelTest {
 
         ((CarRide) travel).reserve(10);
 
-        // Assert
         assertEquals(10, travel.getOccupied_seats());
     }
 
     @Test
-    void reserve_withNotEnoughSeats_shouldThrowException() {
-        // Arrange
+    public void reserveWithNotEnoughSeatsTest() {
         City startCity = new City("Warsaw", "Poland", ZoneId.of("Europe/Warsaw"));
         City endCity = new City("Berlin", "Germany", ZoneId.of("Europe/Berlin"));
-        Travel travel = new Travel(
+        Travel travel = new CarRide(
                 LocalDateTime.now(),
-                Duration.ofHours(2),
+                120,
                 startCity,
                 endCity,
-                100
+                100,0,"KKK222"
         );
 
-        // Act & Assert
-        assertThrows(NoFreeSeatsException.class, () -> travel.reserve(150));
+        assertThrows(NoFreeSeatsException.class, () -> ((CarRide)travel).reserve(150));
     }
 
     @Test
-    void reserve_withTooManyOccupiedSeats_shouldThrowException() {
-        // Arrange
-        City startCity = new City("Warsaw", "Poland", ZoneId.of("Europe/Warsaw"));
-        City endCity = new City("Berlin", "Germany", ZoneId.of("Europe/Berlin"));
-        Travel travel = new Travel(
-                LocalDateTime.now(),
-                Duration.ofHours(2),
-                startCity,
-                endCity,
-                100
-        );
+    public void isNationalTravelTest(){
+        City city1 = new City("Warsaw", "Poland", ZoneId.of("Europe/Warsaw"));
+        City city2 = new City("Moskwa", "Russia", ZoneId.of("Europe/Moscow"));
+        City city3 = new City("Krakow", "Poland", ZoneId.of("Europe/Warsaw"));
+        City city4 = new City("Berlin", "Germany", ZoneId.of("Europe/Berlin"));
 
-        // Occupy some seats
-        travel.setOccupied_seats(90);
+        Travel travel = new CarRide(LocalDateTime.now(), 100, city1,
+                city2,20, 0, "ASD1111");
 
-        // Act & Assert
-        assertThrows(NoFreeSeatsException.class, () -> travel.reserve(20));
+        Travel travel2 = new CarRide(LocalDateTime.now(), 100, city1,
+                city3,20, 0, "ASD222");
+
+        Travel travel3 =  new CarRide(LocalDateTime.now(), 100, city1,
+                city4,20, 0, "ASD222");
+
+        assertTrue(travel.isNationalTravel());
+        assertTrue(travel3.isNationalTravel());
+        assertFalse(travel2.isNationalTravel());
     }
+
+    @Test
+    public void doesChangeDateTest(){
+
+        City city1 = new City("Warsaw", "Poland", ZoneId.of("Europe/Warsaw"));
+        City city2 = new City("Moskwa", "Russia", ZoneId.of("Europe/Moscow"));
+        City city3 = new City("Krakow", "Poland", ZoneId.of("Europe/Warsaw"));
+        City city4 = new City("Berlin", "Germany", ZoneId.of("Europe/Berlin"));
+
+        Travel travel = new CarRide((LocalDateTime.of(2023, 11, 16, 12, 30)), 100, city1,
+                city2,20, 0, "ASD1111");
+
+        Travel travel2 = new CarRide(LocalDateTime.of(2023, 11, 16, 10, 30), 100, city1,
+                city3,20, 0, "ASD222");
+
+        Travel travel3 =  new CarRide(LocalDateTime.of(2023, 11, 16, 23, 30), 100, city1,
+                city4,20, 0, "ASD222");
+
+        assertTrue(travel.doesChangeDate());
+        assertTrue(travel2.doesChangeDate());
+        assertFalse(travel3.doesChangeDate());
+    }
+
 }
