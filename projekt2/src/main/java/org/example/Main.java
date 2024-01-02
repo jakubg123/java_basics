@@ -61,7 +61,7 @@ public class Main {
 
         int totalTransactions = transactions.size();
         long failedTransactions = transactions.stream().filter(transaction -> !transaction.getStatus()).count();
-        System.out.println((double) failedTransactions / totalTransactions);
+        System.out.println((double) failedTransactions / totalTransactions * 100 + "%");
 
 
         System.out.println(transactions.stream().max(Comparator.comparing(transaction -> transaction.getProduct().getPrice() * transaction.getQuantity())));
