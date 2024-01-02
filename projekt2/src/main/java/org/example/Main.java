@@ -45,8 +45,8 @@ public class Main {
         }
 
 
-        ProductLoading.updateProductFile(products, "/home/jakubg/Downloads/products.csv");
-        Shop.writeTransactionsToFile(Shop.getInstance().getTransactions(), "/home/jakubg/Downloads/raports.txt");
+        ProductLoading.updateProductFile(products, path);
+        Shop.writeTransactionsToFile(Shop.getInstance().getTransactions(), "target/raports.txt");
 
 
 
@@ -64,7 +64,9 @@ public class Main {
         System.out.println((double) failedTransactions / totalTransactions * 100 + "%");
 
 
-        System.out.println(transactions.stream().max(Comparator.comparing(transaction -> transaction.getProduct().getPrice() * transaction.getQuantity())));
+        transactions.stream()
+                .max(Comparator.comparing(transaction -> transaction.getProduct().getPrice() * transaction.getQuantity()))
+                .ifPresent(maxTransaction -> System.out.println(maxTransaction.getClient()));
     }
 
 
