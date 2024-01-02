@@ -45,7 +45,7 @@ public class Main {
         }
 
 
-        ProductLoading.updateProductFile(products, "/home/jakubg/Downloads/products1.csv");
+        ProductLoading.updateProductFile(products, "/home/jakubg/Downloads/products.csv");
         Shop.writeTransactionsToFile(Shop.getInstance().getTransactions(), "/home/jakubg/Downloads/raports.txt");
 
 

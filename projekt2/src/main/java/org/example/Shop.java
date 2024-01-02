@@ -80,7 +80,7 @@ public class Shop {
                     status = "Transakcja nie powiodla sie";
                     price = 0;
                 }
-                String line = transaction.getClient().getName() + ";" + transaction.getId() + ";" + "12:" + transaction.getTime() + ";" + transaction.getProduct().getName() + ";" + transaction.getProduct().getCode() + ";" + status + ";" + price;
+                String line = transaction.getClient().getName() + ";" + transaction.getId() + ";" + "12:" + transaction.getTime() + ";" + transaction.getProduct().getName() + ";" + transaction.getProduct().getCode() + ";" + status + ";" + price + " zl";
                 writer.write(line + "\n");
             }
         } catch (IOException e) {
