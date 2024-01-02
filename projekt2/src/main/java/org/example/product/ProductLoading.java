@@ -2,6 +2,7 @@ package org.example.product;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -24,8 +25,8 @@ public class ProductLoading {
 
             String productName = purchaseToken[0];
             int quantity = Integer.parseInt(purchaseToken[1]);
-            String priceRecplacement = stockToken[0].replace("z�", "");
-            double price = Double.parseDouble(priceRecplacement);
+            String priceReplacement = stockToken[0].replace(" z�", "").trim(); // formatowanie z libreOffice
+            int price = Integer.parseInt(priceReplacement);
             int available = Integer.parseInt(stockToken[1]);
 
             products.add(new Product(productName, quantity, price, available));
@@ -33,4 +34,16 @@ public class ProductLoading {
         }
         return products;
     }
+
+    public static void updateProductFile(List<Product> products, String filename) {
+        try (FileWriter writer = new FileWriter(filename)) {
+            for (Product product : products) {
+                String line = product.getName() + ";" + product.getCode() + "," + String.format("%.0f z�", product.getPrice()) + ";" + product.getQuantity() + "\n";
+                writer.write(line);
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 }

@@ -1,5 +1,7 @@
 package org.example.client;
 
+import org.example.product.Product;
+
 import java.util.Objects;
 
 public class Client {
@@ -82,4 +84,6 @@ public class Client {
     public int hashCode() {
         return Objects.hash(name, taxId, address, zipCode, city);
     }
+
+
 }

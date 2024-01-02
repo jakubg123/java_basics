@@ -1,6 +1,5 @@
 package org.example.client;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVRecord;
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -23,7 +22,7 @@ public class ClientLoading {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return clients;
     }
