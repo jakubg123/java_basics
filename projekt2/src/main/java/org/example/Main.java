@@ -8,8 +8,10 @@ import org.example.threads.ClientProcessor;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -45,6 +47,24 @@ public class Main {
 
         ProductLoading.updateProductFile(products, "/home/jakubg/Downloads/products1.csv");
         Shop.writeTransactionsToFile(Shop.getInstance().getTransactions(), "/home/jakubg/Downloads/raports.txt");
+
+
+
+        List<Transaction> transactions = shop.getTransactions();
+        List<Transaction> transactionsTimeBased = transactions.stream()
+                .filter(transaction -> Integer.parseInt(transaction.getTime()) > 30)
+                .filter(transaction -> transaction.getStatus())
+                .collect(Collectors.toList());
+
+        System.out.println(transactionsTimeBased);
+
+
+        int totalTransactions = transactions.size();
+        long failedTransactions = transactions.stream().filter(transaction -> !transaction.getStatus()).count();
+        System.out.println((double) failedTransactions / totalTransactions);
+
+
+        System.out.println(transactions.stream().max(Comparator.comparing(transaction -> transaction.getProduct().getPrice() * transaction.getQuantity())));
     }
 
 

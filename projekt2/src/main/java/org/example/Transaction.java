@@ -17,6 +17,8 @@ public class Transaction {
 
     private String time;
 
+
+
     public Transaction(Client client, Product product, int quantity, boolean status, String time) {
         Random random = new Random();
         this.id = random.nextInt(1000000000);
@@ -50,5 +52,18 @@ public class Transaction {
     public String getTime(){
         return time;
     }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + id +
+                ", client=" + client +
+                ", product=" + product +
+                ", status=" + status +
+                ", quantity=" + quantity +
+                ", time='" + time + '\'' +
+                '}';
+    }
+
 
 }
